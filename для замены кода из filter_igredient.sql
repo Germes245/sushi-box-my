@@ -1,0 +1,4 @@
+select sushi.* from filter_ingredients
+join connection_in_midle_of_filter_ingredients_and_sushi on connection_in_midle_of_filter_ingredients_and_sushi.ingredient_id = filter_ingredients.id
+join sushi on sushi.id = connection_in_midle_of_filter_ingredients_and_sushi.sushi_id
+where filter_ingredients.id = 2;

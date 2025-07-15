@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>переписка</title>
+    <link rel="stylesheet" href="/src/css/normalize.css">
+    <link rel="stylesheet" href="/src/css/index.css">
+</head>
+<body>
+    <!-- Мобильный хедер -->
+    <header>
+        <div class="mobile-header">
+            <input type="checkbox" id="burger-checkbox">
+            <div class="logo"></div>
+            <label for="burger-checkbox" class="burger-button">
+                <span class="burger-line"></span>
+                <span class="burger-line"></span>
+                <span class="burger-line"></span>
+            </label>
+            
+            <!-- Мобильное меню -->
+            <nav class="mobile-menu">
+                <div class="mobile-menu_div">
+                    <div class="part_of_mobile-menu_div">
+                        <button class="button_of_mobile-menu">
+                            <div class="image_for_button arrow_of_navigator"></div>
+                            <span>ул. Баррикадная, 16</span>
+                        </button>
+                        <div class="two_buttons_of_mobile-menu">
+                            <button class="button_of_mobile-menu pulsanto_telefono">
+                                <div class="image_for_button telefono"></div>
+                                <span>8 (8422) 21-73-73</span>
+                            </button>
+                            <button class="button_of_mobile-menu profile">
+                                <div class="image_for_button for_numero_telefono"></div>
+                                <span>Войти</span>
+                            </button>
+                        </div>
+                        <div class="part_of_mobile-menu_div-pulsanti">
+                            <span>Lorem ipsum</span>
+                            <span>Lorem ipsum</span>
+                            <span>Lorem ipsum</span>
+                            <span>Lorem ipsum</span>
+                            
+                        </div>
+                    </div>
+                    <div class="part_of_mobile-menu_div">
+                        <div class="buttons_of_social_media">
+                            <button id="vk"></button>
+                            <button id="telegram"></button>
+                            <button id="ok"></button>
+                        </div>
+                        <div class="buttons_for_download">
+                            <button id="appstore"></button>
+                            <button id="google_play"></button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="desktop_header">
+            <div class="left_part">
+                <div class="logo"></div>
+                <span class="place_of_delivery">
+                    Доставка в<span class="rectangle_for_place_of_delivery">Ульяновске</span>
+                    60 минут
+                </span>
+            </div>
+            <div class="right_part">
+                <div class="element_for_right_part">
+                    <div class="pictur_for_element_for_right_part location_text"></div>
+                    <span>ул. Баррикадная, 16</span>
+                </div>
+                <div class="element_for_right_part">
+                    <div class="pictur_for_element_for_right_part phone"></div>
+                    <span>8 (8422) 21-73-73</span>
+                </div>
+                <div class="element_for_right_part">
+                    <div class="pictur_for_element_for_right_part profile"></div>
+                    <span>Войти</span>
+                </div> 
+            </div>
+        </div>
+        <div class="toolbar">
+            <div class="buttons_of_toolbar">
+                <span>lorem</span>
+                <span>lorem</span>
+                <span>lorem</span>
+                <span>lorem</span>
+                <span>lorem</span>
+                <span>lorem</span>
+                <span>lorem</span>
+                <span>lorem</span>
+                <span>lorem</span>
+                <span>lorem</span>
+            </div>
+            <div class="busket_button">
+                <div class="busket"></div>
+                <span>Корзина</span>
+            </div>
+        </div>
+    </header>
+    <section class="body">
+        <div class="container-slides">
+            <button class="arrow left-arrow"></button>
+            <button class="arrow right-arrow"></button>
+            <div class="slides">
+              <div class="slide-1"></div>
+              <div class="slide-2"></div>
+              <div class="slide-3"></div>
+            </div>
+            <div class="show"></div>
+        </div>
+        <div class="filter">
+            <span class="reset_all" style="display: none;">reset all</span>
+            <span class="filter_by_ingredients-span">Фильтр по ингридиентам</span>
+            <div class="filter_by_ingredients-type">
+                <button class="color_button_string" style="background-color: #FF5E00;">ХИТ</button>
+                <button class="color_button_string" style="background-color: #5F25E0;">NEW</button>
+                <button class="tag active_buttons_for_filter" value="1"><div style="background-image: url('/assets/image 1565.png');"></div><span>Вега</span></button>
+                <button class="tag active_buttons_for_filter" value="2"><div style="background-image: url('/assets/image 1367.png');"></div><span>Горячие</span></button>
+                <button class="tag active_buttons_for_filter" value="3"><div style="background-image: url('/assets/image 1618.png');"></div><span>Острое</span></button>
+                <button class="tag"><div style="background-image: url('/assets/image 514.png');"></div><span>Скидка</span></button>
+            </div>
+            <div class="filter_downer">
+                <%- filter_ingredients %>
+            </div>
+        </div>
+        <div id="rolls">
+            <%- rolls %>
+        </div>
+    </section>
+    <footer>
+        <div class="upper_of_footer">
+            <div class="for_upper_of_footer">
+                <div class="links_in_footer">
+                    <div class="font_for_upper_of_footer_1">
+                        <div class="absolue_span">
+                            <div id="circle_in_span"></div>
+                            <span>pdf-меню</span>
+                        </div>
+                        <span>Фирменные роллы</span>
+                        <span>Запечённые роллы</span>
+                        <span>Классические роллы</span>
+                        <span>Темпурные роллы</span>
+                        <span>Сеты</span>
+                        <span>Суши</span>
+                    </div>
+                    <div class="font_for_upper_of_footer_1">
+                        <span>Воки</span>
+                        <span>Тяхан</span>
+                        <span>Супы</span>
+                        <span>Салаты</span>
+                        <span>Соусы</span>
+                        <span>Напитки</span>
+                    </div>
+                    <div class="font_for_upper_of_footer_2">
+                        <span>Акции и скидки</span>
+                        <span>Доставка и оплата</span>
+                        <span>Бонусная система</span>
+                    </div>
+                    <div class="font_for_upper_of_footer_2">
+                        <span>О компании</span>
+                        <span>Вакансии</span>
+                        <span>Контакты</span>
+                    </div>
+                </div>
+                <div class="right_of_footer">
+                    <div class="upper_of_right_of_footer">
+                        <div class="inst"></div>
+                        <div class="VK"></div>
+                        <div class="OK"></div>
+                    </div>
+                    <div class="text">
+                        <span>sushibox.org</span>
+                        <span>+7 (8442) 27-73-73</span>
+                    </div>
+                    <div class="downer_of_right_of_footer">
+                        <div id="app_store"></div>
+                        <div id="play_market"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="downer_of_footer">
+            <div class="for_downer_of_footer">
+                <div class="for_text">
+                    <span>SushiBox 2013-2021</span>
+                    <span>Все права защищены</span>
+                </div>
+                <div class="logo_in_footer"></div>
+                <div class="for_text">
+                    <span>Правила оплаты товаров</span>
+                    <span>Политика конфиденциальности</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="/src/js/index.js"></script>
+</body>
+</html>

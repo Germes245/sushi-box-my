@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      * {
+        font-size: 20px;
+      }
+      body {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        gap: 10px;
+        margin-top: 30px;
+      }
+      input {
+        width: 400px;
+        height: 25px;
+      }
+      button {
+        padding: 10px;
+        cursor: pointer;
+      }
+      details{
+        background-color: #F3F3F3;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+      .button_ingredient{
+        width: 100%;
+        text-align:start;
+        background-color: #F3F3F3;
+        padding: 5px;
+      }
+      #container_for_added_ingredients{
+        width: 95%;
+        background-color: #F3F3F3;
+        padding: 10px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .added_ingredient{
+        border: 1px solid black;
+        border-radius: 3px;
+        padding: 8px;
+        height: 20px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1px;
+      }
+      .busket{
+        background-image: url('/icons/Без имени.png');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        border: 0;
+        background-color: #00000000;
+      }
+    </style>
+    <title>add sushi</title>
+  </head>
+  <body>
+    <form action="/upload_sushi" method="post" enctype="multipart/form-data">
+      <select name="type_of_rolla">
+        <option value="rolla brenda">фирменная ролла</option>
+        <option value="rolla clasica">класическая ролла</option>
+      </select>
+      <label for="name_of_susha">название</label>
+      <input type="text" name="name_of_susha" id="name_of_susha" />
+      <label for="price">цена</label>
+      <input type="number" name="price" id="price" />
+      <label for="deskription">описание</label>
+      <input type="text" name="deskription" id="deskription">
+      <div id="container_for_added_ingredients">
+      </div>
+      <details open="">
+        <summary></summary>
+        <%- ingredients %>
+      </details>
+      <input type="file" name="photo" />
+      <button type="submit">send</button>
+    </form>
+    <script>
+      console.log(1)
+      document.addEventListener('DOMContentLoaded', () => {
+      const array_for_ingredients = new Set();
+      const container = document.querySelector('#container_for_added_ingredients');
+      const form = document.querySelector('form');
+
+      // 1. Добавление ингредиента
+      document.querySelectorAll('.button_ingredient').forEach(el => {
+        el.addEventListener('click', event => {
+          event.preventDefault();
+          const ingredient_id = event.target.id;
+          const ingredient = event.target.textContent.trim();
+          
+          if (!array_for_ingredients.has(ingredient_id)) {
+            array_for_ingredients.add(ingredient_id);
+            container.insertAdjacentHTML("beforeend", `
+              <div class="added_ingredient">
+                <span>${ingredient}</span>
+                <button class="busket" data-ingredient="${ingredient_id}"></button>
+              </div>
+            `);
+          }
+        });
+      });
+
+      // 2. Удаление ингредиента
+      container.addEventListener('click', event => {
+        event.preventDefault();
+        const ingredient = event.target.dataset.ingredient;
+        array_for_ingredients.delete(ingredient);
+        event.target.closest('.added_ingredient').remove();
+      });
+
+      // 3. Перехват отправки формы
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault(); // Блокируем стандартную отправку
+
+        // Создаём FormData и добавляем стандартные поля
+        const formData = new FormData(form);
+
+        // Добавляем ингредиенты (преобразуем Set в массив)
+        formData.append('ingredients', Array.from(array_for_ingredients).join(','));
+
+        // Отправляем данные на сервер
+        try {
+          const response = await fetch(form.action, {
+            method: 'POST',
+            body: formData,
+          });
+          
+          if (response.ok) {
+            alert('Данные сохранены!');
+          } else {
+            alert('Ошибка сервера');
+          }
+        } catch (error) {
+          console.error('Ошибка:', error);
+          alert('Не удалось отправить данные');
+        }
+      });
+    });
+    </script>
+  </body>
+</html>

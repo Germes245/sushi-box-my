@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      * {
+        font-size: 20px;
+      }
+      body {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        gap: 10px;
+        margin-top: 30px;
+      }
+      input {
+        width: 400px;
+        height: 25px;
+      }
+      button {
+        padding: 10px;
+        cursor: pointer;
+      }
+      details{
+        background-color: #F3F3F3;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+      .button_ingredient{
+        width: 100%;
+        text-align:start;
+        background-color: #F3F3F3;
+        padding: 5px;
+      }
+      .added_ingredient{
+        border: 1px solid black;
+        border-radius: 3px;
+        padding: 8px;
+        height: 20px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1px;
+      }
+      .busket{
+        background-image: url('/icons/Без имени.png');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        border: 0;
+        background-color: #00000000;
+      }
+    </style>
+    <title>add sushi</title>
+  </head>
+  <body>
+    <form action="/upload_sushi" method="post" enctype="multipart/form-data">
+      <select name="type_of_rolla">
+        <%- type_of_rolla %>
+      </select>
+      <label for="name_of_susha">название</label>
+      <input type="text" name="name_of_susha" id="name_of_susha" />
+      <label for="price">цена</label>
+      <input type="number" name="price" id="price" />
+      <label for="deskription">описание</label>
+      <input type="text" name="deskription" id="deskription">
+      <select name="ingredients" multiple>
+        <%- ingredients %>
+      </select>
+      <select name="filter_up" multiple>
+        <option value="1">вега</option>
+        <option value="2">горячие</option>
+        <option value="3">острое</option>
+      </select>
+      <input type="file" name="photo" />
+      <button type="submit">send</button>
+    </form>
+  </body>
+</html>
