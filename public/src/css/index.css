@@ -370,23 +370,38 @@ align-items: center;
 box-shadow: 0 0 8px #00000014;
 }
 
-
-
-.add_susha{
-    background-color: #FECB24;
-    width: 126px;
-    height: 40px;
-    text-align: center;
+.button_container{
     display: none;
     position: absolute;
     right: 16px;
     bottom: 16px;
-    border-radius: 4px;
+    width: 126px;
+    height: 40px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.card_for_rols:hover .add_susha{
-    display: block;
-    
+.add_susha{
+    background-color: #FECB24;
+    text-align: center;
+    position: absolute;
+    border-radius: 4px;
+    width: 126px;
+    height: 40px;
+    box-shadow: 0 0 8px #FECB24;
+}
+
+.card_for_rols:hover .button_container{
+    display: flex;
+}
+
+.minus_and_plus{
+    width: 40px;
+    height: 40px;
+    background-color: #FECB24;
+    box-shadow: 0 0 8px #FECB24;
+    border-radius: 4px;
 }
 
 .img{

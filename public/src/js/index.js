@@ -4,6 +4,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const filter_up=document.querySelectorAll('.active_buttons_for_filter');
     const reset_all=document.querySelector('.reset_all');
     const array_which_ingredients_pressed={"active_buttons_for_filter": {'1':false,'2':false,'3':false},"button_ingredient": {}};
+    for(let i of Object.keys(localStorage)){
+        console.log(i);
+        const block=document.getElementById(`susha_${i}`);
+        block.addEventListener('click', event_for_plus_and_minus);
+        const container=block.querySelector('.button_container');
+        container.style='display: flex;';
+        container.innerHTML=`<button class="minus_and_plus" data-value="-1">-</button>
+                <span id="span_${i}">${localStorage[i]}</span>
+                <button class="minus_and_plus" data-value="1">+</button>`
+    }
     const limiter = 2;
     let location = 0;
 
@@ -31,41 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
         `translateX(-${[`${location * 94.5}vw`, `${location * 1208}px`][Number(window.innerWidth > 1265)]})`;
     }
 
-    /*function learn_selected_buttons(){
-        return Object.values(array_which_ingredients_pressed).map(value => Object.values(value)).map(value => value.includes(true))
-    }*/
-
     function to_reset_all(){
-        /*console.log(array_which_ingredients_pressed);
-        const array_before_request=[[],[]]
-        for(let i of Object.keys(array_which_ingredients_pressed['button_ingredient'])){
-            if(array_which_ingredients_pressed['button_ingredient'][i]) array_before_request[0].push(i);
-        };
-        for(let i of Object.keys(array_which_ingredients_pressed['active_buttons_for_filter'])){
-            if(array_which_ingredients_pressed['active_buttons_for_filter'][i]) array_before_request[1].push(i);
-        }
-        console.log('array_before_request',array_before_request);
-
-        for(let i of array_before_request){
-            console.log(i)
-            if(i.length !== 0){
-                for(let key of Object.keys(array_which_ingredients_pressed)){
-                    for(let key_of_element of Object.keys(array_which_ingredients_pressed[key])){
-                        console.log(`${key_of_element}: ${array_which_ingredients_pressed[key][key_of_element]}`)
-                        array_which_ingredients_pressed[key][key_of_element]=false;
-                        
-                    }
-                    document.querySelectorAll('.active_buttons_for_filter').forEach(value => {
-                        console.log(value)
-                    });
-                }
-                break
-            }
-        }
-        document.querySelectorAll('.active_buttons_for_filter').forEach(value => {
-            value.style=''
-        });
-        console.log('------')*/
         for(let j of Object.keys(array_which_ingredients_pressed['active_buttons_for_filter'])){
             array_which_ingredients_pressed['active_buttons_for_filter'][j]=false
         };
@@ -140,70 +116,6 @@ document.addEventListener('DOMContentLoaded', () => {
         move(1);
     });
 
-    /*ingredients.forEach((element) => {
-        array_which_ingredients_pressed[element.id]=false;
-        element.addEventListener('click', (evt)=>{
-            let this_button=evt.target;
-
-            if(!(this_button.className.includes('ingredients'))){
-                this_button=this_button.parentElement;
-            }
-
-            console.log(this_button.className)
-
-            if(array_which_ingredients_pressed[this_button.id]){
-                this_button.style=''
-            }
-            else{
-                this_button.style='border: 2px solid yellow'
-            }
-            array_which_ingredients_pressed[this_button.id]=array_which_ingredients_pressed[this_button.id]===false;
-            show_or_hide_the_button_reset_all();
-            let before_sending='/filter_igredient/';
-            for([key,value] of Object.entries(array_which_ingredients_pressed)){
-                if(value){
-                    before_sending+=`${key}&`;
-                }
-            };
-            before_sending=before_sending.slice(0,before_sending.length-1);
-            fetch(before_sending)
-            .then(data => data.json())
-            .then(data => document.querySelector('#rolls').innerHTML=data.rolls);
-        });
-    });
-    reset_all.addEventListener('click', (evt)=>{
-        let i;
-        for(i of Object.keys(array_which_ingredients_pressed)){
-            array_which_ingredients_pressed[i]=false;
-        }
-        for(i of ingredients){
-            i.style=''
-        }
-        fetch('/filter_igredient/')
-        .then(data => data.json())
-        .then(data => document.querySelector('#rolls').innerHTML=data.rolls);
-        reset_all.style='display: none;';
-    })
-    console.log(ingredients)
-    ingredients.forEach((element) => {
-        array_which_ingredients_pressed["button_ingredient"][element.id]=false;
-        element.addEventListener('click', (evt)=>{
-            let this_button=evt.target;
-
-            if(!(this_button.className.includes('ingredients'))){
-                this_button=this_button.parentElement;
-            };
-
-            if(array_which_ingredients_pressed["button_ingredient"][this_button.id]){
-                this_button.style=''
-            }
-            else{
-                this_button.style='border: 2px solid yellow'
-            }
-        });
-        console.log(array_which_ingredients_pressed)
-    });*/
-
     reset_all.addEventListener('click', to_reset_all);
 
     ingredients.forEach(element => {
@@ -242,6 +154,36 @@ document.addEventListener('DOMContentLoaded', () => {
             array_which_ingredients_pressed["active_buttons_for_filter"][this_button.value]=array_which_ingredients_pressed["active_buttons_for_filter"][this_button.value]==false;
             show_or_hide_the_button_reset_all();
             to_filter();
+        });
+    });
+    function event_for_plus_and_minus(evt){
+        console.log('a')
+        const id=evt.target.parentElement.dataset.value
+        value_for_score=Number(localStorage.getItem(id)) + Number(evt.target.dataset.value);
+        if(value_for_score>0){
+            document.querySelector(`#span_${id}`).innerHTML=value_for_score;
+            localStorage.setItem(id, value_for_score);
+        }
+        else{
+            localStorage.removeItem(id);
+            evt.target.parentElement.style='';
+            evt.target.parentElement.innerHTML='<button class="add_susha">Беру</button>';
+        }
+    }
+    document.querySelectorAll('.add_susha').forEach(value => {
+        value.addEventListener('click', evt => {
+            const block=evt.target.parentElement
+            console.log(evt.target.parentElement)
+            localStorage.setItem(block.dataset.value, '1')
+            block.style='display: flex;'
+            console.log(block)
+            block.innerHTML=`<button class="minus_and_plus" data-value="-1">-</button>
+                <span id="span_${block.dataset.value}">1</span>
+                <button class="minus_and_plus" data-value="1">+</button>
+            `;
+            document.querySelectorAll('.minus_and_plus').forEach(value => {
+                value.addEventListener('click', event_for_plus_and_minus)
+            })
         });
     });
     console.log(array_which_ingredients_pressed)

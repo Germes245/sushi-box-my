@@ -23,7 +23,7 @@ async function prepareMainPage(allSushi, do_ingredients=true) {
         if(!(value.type_of_rolla in information_for_main_page)){
             information_for_main_page[value.type_of_rolla]=''
         };
-        information_for_main_page[value.type_of_rolla] += `<div class="card_for_rols">
+        information_for_main_page[value.type_of_rolla] += `<div class="card_for_rols" id="susha_${value.id}">
                     <div class="hit_and_new">
                         <div class="for_hit_and_new orange">ХИТ</div>
                         <div class="for_hit_and_new blue">NEW</div>
@@ -39,9 +39,11 @@ async function prepareMainPage(allSushi, do_ingredients=true) {
                     <div class="price">
                         <span>${value.cost} ₽</span>
                     </div>
+                    <div class="button_container" data-value="${value.id}">
                     <button class="add_susha">
                         Беру
                     </button>
+                    </div>
                 </div>`;
     };
     let rolls='';
