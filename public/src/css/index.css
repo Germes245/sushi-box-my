@@ -368,7 +368,25 @@ border-radius: 16px;
 position: relative;
 align-items: center;
 box-shadow: 0 0 8px #00000014;
-cursor: pointer;
+}
+
+
+
+.add_susha{
+    background-color: #FECB24;
+    width: 126px;
+    height: 40px;
+    text-align: center;
+    display: none;
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    border-radius: 4px;
+}
+
+.card_for_rols:hover .add_susha{
+    display: block;
+    
 }
 
 .img{

@@ -14,7 +14,7 @@ async function prepareMainPage(allSushi, do_ingredients=true) {
                 string+=`<div class="mark">
                     <div class="pict" style="background-image: url('${value.pictur}');"></div>
                     <span>${value.name}</span>
-                    </div>`
+                </div>`
             });
             console.log(`filter up: ${string}`)
         }));
@@ -39,17 +39,11 @@ async function prepareMainPage(allSushi, do_ingredients=true) {
                     <div class="price">
                         <span>${value.cost} ₽</span>
                     </div>
+                    <button class="add_susha">
+                        Беру
+                    </button>
                 </div>`;
     };
-    /*
-    for(i=1;i<=(await sequelize.query('select max(id) from filter_ingredients;'))[0][0].max;i++){
-        const query = (await sequelize.query(`SELECT name, link_of_picture FROM filter_ingredients WHERE id = ${i}`))[0][0];
-        ingredients+=`<button class="button_ingredient" id="${i}">
-                    <span>${query.name}</span>
-                    <div style="background-image: url('${query.link_of_picture}');"></div>
-                </button>`;
-    };
-    */
     let rolls='';
     if(do_ingredients){
         let ingredients='';
