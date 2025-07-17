@@ -51,6 +51,10 @@ app.get('/', async (req, res) => {
   });
 });
 
+/*app.get('/busket_window/:id', (req, res)=>{
+  
+})*/
+
 app.get('/admin_panel_sushi', async(req,res)=>{
   const ingredients = (await sequelize.query('SELECT * FROM filter_ingredients;'))[0]; // это истина, а "await filter_ingredients.findAll({raw: true});" есть ересь
   console.log(ingredients);

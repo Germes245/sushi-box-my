@@ -101,6 +101,10 @@ button{
     padding: 0 15px;
 }
 
+.flex{
+    display: flex !important;
+}
+
 .buttons_of_toolbar{
     display: flex;
     flex-direction: row;
@@ -119,6 +123,80 @@ button{
     flex-direction: row;
     align-items: center;
     gap: 4px;
+    cursor: pointer;
+    position: relative;
+}
+
+#busket_window{
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    width: 360px;
+    background-color: #fff;
+    box-shadow: 0 0 24px #000;
+    cursor: auto;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 4px;
+    gap: 24px;
+    padding: 24px 0;
+}
+
+.card_for_busket{
+    width: 312px;
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+/*.card_for_busket *{
+    border: 1px solid red;
+}*/
+
+.left_of_card_for_busket{
+    display: flex;
+    flex-direction: row;
+    gap: 18px;
+    align-items: stretch;
+}
+
+.right_of_card_for_busket{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.button_delete{
+    width: 24px;
+    height: 24px;
+    background-image: url('/assets/trash.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #00000000;
+}
+
+.picture_for_busket{
+    width: 75px;
+    background-image: url('/assets/roll.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+#name_of_susha_and_buttons_plus_and_minus{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+}
+
+.price_for_busket{
+    font-size: 16px;
+    font-weight: 700;
 }
 
 .busket{
@@ -402,6 +480,32 @@ box-shadow: 0 0 8px #00000014;
     background-color: #FECB24;
     box-shadow: 0 0 8px #FECB24;
     border-radius: 4px;
+}
+
+.ProductcardXS_name_of_susha{
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.buttons_plus_and_minus{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
+.button_plus_and_minus{
+    background-color: #FECB24;
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    box-shadow: 0 0 8px #FECB247A;
+}
+
+.number_for_busket{
+    font-size: 16px;
+    font-weight: 700;
 }
 
 .img{

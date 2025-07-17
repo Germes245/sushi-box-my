@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const ingredients=document.querySelectorAll('.button_ingredient');
     const filter_up=document.querySelectorAll('.active_buttons_for_filter');
     const reset_all=document.querySelector('.reset_all');
+    const busket_window = document.querySelector('#busket_window');
     const array_which_ingredients_pressed={"active_buttons_for_filter": {'1':false,'2':false,'3':false},"button_ingredient": {}};
     for(let i of Object.keys(localStorage)){
         console.log(i);
@@ -16,6 +17,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     const limiter = 2;
     let location = 0;
+
+    document.querySelector('.busket_button').addEventListener('click', evt => {
+        const element=evt.target;
+        if(!(busket_window.classList.contains('flex'))){
+            console.log(1)
+        }
+        busket_window.classList.toggle('flex');
+
+    });
 
     function show_or_hide_the_button_reset_all(){
         for(let value of Object.values(array_which_ingredients_pressed)){
