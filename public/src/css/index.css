@@ -181,7 +181,6 @@ button{
 
 .picture_for_busket{
     width: 75px;
-    background-image: url('/assets/roll.png');
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;

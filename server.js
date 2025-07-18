@@ -51,9 +51,30 @@ app.get('/', async (req, res) => {
   });
 });
 
-/*app.get('/busket_window/:id', (req, res)=>{
-  
-})*/
+app.get('/busket_window/:ids', async(req, res)=>{
+  let html_code='';
+  for(let i of req.params.ids.split('&')){
+    html_code+=`<div class="card_for_busket">
+                        <div class="left_of_card_for_busket">
+                            <div class="picture_for_busket" style="background-image: url('${(await sequelize.query(`select link_of_picture from sushi where id = ${i};`))[0][0].link_of_picture}');"></div>
+                            <div id="name_of_susha_and_buttons_plus_and_minus">
+                                <span class="ProductcardXS_name_of_susha">${(await sequelize.query(`select name from sushi where id = ${i};`))[0][0].name}</span>
+                                <div class="buttons_plus_and_minus">
+                                    <button class="button_plus_and_minus">-</button>
+                                    <span class="number_for_busket"></span>
+                                    <button class="button_plus_and_minus">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="right_of_card_for_busket">
+                            <button class="button_delete"></button>
+                            <span class="price_for_busket">200 ₽</span>
+                        </div>
+                    </div>`
+  };
+  console.log(html_code)
+  res.send(html_code)
+})
 
 app.get('/admin_panel_sushi', async(req,res)=>{
   const ingredients = (await sequelize.query('SELECT * FROM filter_ingredients;'))[0]; // это истина, а "await filter_ingredients.findAll({raw: true});" есть ересь

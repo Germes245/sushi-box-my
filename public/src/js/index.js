@@ -21,7 +21,15 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.busket_button').addEventListener('click', evt => {
         const element=evt.target;
         if(!(busket_window.classList.contains('flex'))){
-            console.log(1)
+            console.log(1);
+            let selected_sushi='';
+            let before_request=[];
+            for(let i of Object.keys(localStorage)){
+                before_request.push(i);
+            };
+            fetch(`/busket_window/${before_request.join('&')}`)
+            .then(data => data.text())
+            .then(data => busket_window.innerHTML=data)
         }
         busket_window.classList.toggle('flex');
 
@@ -193,7 +201,8 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
             document.querySelectorAll('.minus_and_plus').forEach(value => {
                 value.addEventListener('click', event_for_plus_and_minus)
-            })
+            });
+
         });
     });
     console.log(array_which_ingredients_pressed)
